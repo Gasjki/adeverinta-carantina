@@ -18,7 +18,7 @@
                     <div class="card-body mb-0">
                         <h5 class="text-center">Declaratie pe proprie raspundere</h5>
                         <div class="table-responsive-md mt-5">
-                            <table class="table table-sm">
+                            <table class="table table-sm d-none d-md-block">
                                 <tbody>
                                 <tr>
                                     <td class="align-middle w-25">Subsemnatul</td>
@@ -45,14 +45,48 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <table class="table table-sm d-block d-md-none">
+                                <tbody>
+                                <tr>
+                                    <td class="align-middle w-25">Subsemnatul</td>
+                                    <td class="align-middle w-75"><input type="text" class="form-control" v-model="fullName" required/></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle w-25">Domiciliat în</td>
+                                    <td class="align-middle"><input type="text" class="form-control" v-model="resident" required/></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle w-25">Cu reședința în</td>
+                                    <td class="align-middle"><input type="text" class="form-control" v-model="residence" required/></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle w-25">Născut/născută în data de</td>
+                                    <td class="align-middle"><input type="date" class="form-control" v-model="birthDate" required/></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle w-25">În localitatea</td>
+                                    <td class="align-middle"><input type="text" class="form-control" v-model="city" required/></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="table-responsive-md mt-3">
                             <table class="table table-sm">
                                 <tbody>
-                                <tr>
+                                <tr class="d-none d-md-block">
                                     <td class="align-middle font-weight-bold w-25">1. În intervalul orar</td>
                                     <td class="align-middle"><input type="time" class="form-control d-inline-block"
                                                                     v-model="startingHour" required/></td>
+                                    <td class="align-middle"><input type="time" class="form-control d-inline-block"
+                                                                    v-model="endingHour" required/></td>
+                                </tr>
+                                <tr class="d-block d-md-none">
+                                    <td class="align-middle font-weight-bold w-25">1. În intervalul orar</td>
+                                </tr>
+                                <tr class="d-block d-md-none">
+                                    <td class="align-middle"><input type="time" class="form-control d-inline-block"
+                                                                    v-model="startingHour" required/></td>
+                                    <td class="align-middle"> - </td>
                                     <td class="align-middle"><input type="time" class="form-control d-inline-block"
                                                                     v-model="endingHour" required/></td>
                                 </tr>
@@ -389,7 +423,7 @@
                                 <tr>
                                     <td class="w-50"><input type="date" class="form-control" v-model="date" required/></td>
                                     <td class="text-center">
-                                        <canvas width="400" height="200" ref="signature" style="border: 1px solid #e5e5e5"></canvas>
+                                        <canvas width="350" height="200" ref="signature" style="border: 1px solid #e5e5e5"></canvas>
                                     </td>
                                 </tr>
                                 </tbody>

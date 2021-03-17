@@ -20,6 +20,19 @@
                         <div class="table-responsive-md mt-5">
                             <table class="table table-sm d-none d-md-block">
                                 <tbody>
+                                <tr v-if="users.length">
+                                    <td class="align-middle w-25">Datele tale</td>
+                                    <td colspan="3" class="align-middle w-75">
+                                        <select class="form-control" v-model="selectedUser" v-on:change="loadUser">
+                                            <option value="" selected disabled>Alege utilizator</option>
+                                            <option v-for="user in users" :value="user.fullName"
+                                                    v-text="user.fullName"/>
+                                        </select>
+                                        <a href="javascript:void(0);" class="small" v-on:click="deleteUser"
+                                           v-show="this.selectedUser !== ''">(Sterge
+                                            datele pentru utilizatorul curent)</a>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="align-middle w-25">Subsemnatul</td>
                                     <td colspan="3" class="align-middle w-75"><input type="text" class="form-control"
@@ -49,23 +62,28 @@
                                 <tbody>
                                 <tr>
                                     <td class="align-middle w-25">Subsemnatul</td>
-                                    <td class="align-middle w-75"><input type="text" class="form-control" v-model="fullName" required/></td>
+                                    <td class="align-middle w-75"><input type="text" class="form-control"
+                                                                         v-model="fullName" required/></td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle w-25">Domiciliat în</td>
-                                    <td class="align-middle"><input type="text" class="form-control" v-model="resident" required/></td>
+                                    <td class="align-middle"><input type="text" class="form-control" v-model="resident"
+                                                                    required/></td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle w-25">Cu reședința în</td>
-                                    <td class="align-middle"><input type="text" class="form-control" v-model="residence" required/></td>
+                                    <td class="align-middle"><input type="text" class="form-control" v-model="residence"
+                                                                    required/></td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle w-25">Născut/născută în data de</td>
-                                    <td class="align-middle"><input type="date" class="form-control" v-model="birthDate" required/></td>
+                                    <td class="align-middle"><input type="date" class="form-control" v-model="birthDate"
+                                                                    required/></td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle w-25">În localitatea</td>
-                                    <td class="align-middle"><input type="text" class="form-control" v-model="city" required/></td>
+                                    <td class="align-middle"><input type="text" class="form-control" v-model="city"
+                                                                    required/></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -73,6 +91,14 @@
                         <div class="table-responsive-md mt-3">
                             <table class="table table-sm">
                                 <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <h6 class="font-weight-bold">
+                                            Declar  pe  proprie  răspundere,  cunoscând  prevederile  articolului  326  din  Codul  Penal
+                                            privind  falsul  în declarații, că mă deplasez în afara locuinței, din următorul motiv:
+                                        </h6>
+                                    </td>
+                                </tr>
                                 <tr class="d-none d-md-block">
                                     <td class="align-middle font-weight-bold w-25">1. În intervalul orar</td>
                                     <td class="align-middle"><input type="time" class="form-control d-inline-block"
@@ -86,7 +112,7 @@
                                 <tr class="d-block d-md-none">
                                     <td class="align-middle"><input type="time" class="form-control d-inline-block"
                                                                     v-model="startingHour" required/></td>
-                                    <td class="align-middle"> - </td>
+                                    <td class="align-middle"> -</td>
                                     <td class="align-middle"><input type="time" class="form-control d-inline-block"
                                                                     v-model="endingHour" required/></td>
                                 </tr>
@@ -298,6 +324,18 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <!-- Checkbox #16 -->
+                                <tr>
+                                    <td colspan="2" class="align-middle">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="varianta_16"
+                                                   v-model="reasons" id="defaultCheck16">
+                                            <label class="form-check-label" for="defaultCheck16">
+                                                p) deplasări ale persoanelor pentru administrare de vaccin împotriva SARS-CoV-2.
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -421,9 +459,11 @@
                                     <td class="align-middle w-50 text-center font-weight-bold">Semnătura:</td>
                                 </tr>
                                 <tr>
-                                    <td class="w-50"><input type="date" class="form-control" v-model="date" required/></td>
+                                    <td class="w-50"><input type="date" class="form-control" v-model="date" required/>
+                                    </td>
                                     <td class="text-center">
-                                        <canvas width="350" height="200" ref="signature" style="border: 1px solid #e5e5e5"></canvas>
+                                        <canvas width="350" height="200" ref="signature"
+                                                style="border: 1px solid #e5e5e5"></canvas>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -439,7 +479,8 @@
                     </div>
                 </form>
             </div>
-            <button type="submit" class="btn btn-sm btn-success scroll-to-top" :class="{ 'd-none': isButtonFloating }" @click="onClick">
+            <button type="submit" class="btn btn-sm btn-success scroll-to-top" :class="{ 'd-none': isButtonFloating }"
+                    @click="onClick">
                 Descarca document
             </button>
         </div>
@@ -495,6 +536,7 @@
                 'reason_13',
                 'reason_14',
                 'reason_15',
+                'reason_16',
                 'extra_reason_1',
                 'extra_reason_2',
                 'extra_reason_3',
@@ -503,6 +545,9 @@
                 'extra_reason_6',
                 'extra_reason_7'
             ],
+
+            selectedUser: '',
+            users: [],
 
             // Canvas,
             canvas: null,
@@ -642,6 +687,7 @@
                     reason_13: this.reasons.includes('varianta_13') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
                     reason_14: this.reasons.includes('varianta_14') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
                     reason_15: this.reasons.includes('varianta_15') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
+                    reason_16: this.reasons.includes('varianta_16') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
                     extra_reason_1: this.extraReasons.includes('varianta_1') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
                     extra_reason_2: this.extraReasons.includes('varianta_2') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
                     extra_reason_3: this.extraReasons.includes('varianta_3') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
@@ -680,7 +726,7 @@
                         })
                     ])
                     .then(function (templateImage) {
-                        let doc = new jsPDF('p','mm',[297, 210]);
+                        let doc = new jsPDF('p', 'mm', [297, 210]);
 
                         doc.addImage(templateImage[0], 'PNG', 15, 15);
                         const currentDayMonth = (new Date()).toLocaleDateString('ro').replace(/\./g, '_');
@@ -688,6 +734,33 @@
                         const fileName = 'declaratie_carantina_' + currentDayMonth + '.pdf';
                         doc.save(fileName);
                     });
+            },
+            loadUser: function () {
+                if (!this.selectedUser) {
+                    return;
+                }
+
+                let userData = null;
+
+                for (let i = 0; i < this.users.length; i++) {
+                    let row = this.users[i];
+
+                    if (row.fullName === this.selectedUser) {
+                        userData = this.users[i];
+                        break;
+                    }
+                }
+
+                if (!userData) {
+                    return;
+                }
+
+                this.fullName = userData.fullName;
+                this.resident = userData.resident;
+                this.residence = userData.residence;
+                this.birthDate = userData.birthDate;
+                this.city = userData.city;
+                this.signaturePad.fromDataURL('data:image/png;base64,' + userData.canvas);
             },
             download: function () {
                 this.generate(this.getPreparedTemplateString());
@@ -699,7 +772,78 @@
                     return;
                 }
 
+                this.save();
                 this.download();
+            },
+            save: function () {
+                let canvasBase64 = this.canvas.toDataURL();
+                canvasBase64 = canvasBase64.replace('data:image/png;base64,', '');
+
+                let user = [
+                    {
+                        'fullName': this.fullName,
+                        'resident': this.resident,
+                        'residence': this.residence,
+                        'birthDate': this.birthDate,
+                        'city': this.city,
+                        'canvas': canvasBase64
+                    }
+                ];
+
+                if (!this.users.length) {
+                    this.users = [user];
+                } else {
+                    for (let i = 0; i < this.users.length; i++) {
+                        let row = this.users[i];
+
+                        if (row.fullName === this.fullName) {
+                            this.users.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    this.users.push(user);
+                }
+
+                this.setCookie('users', JSON.stringify(this.users), 1000);
+            },
+            deleteUser: function () {
+                for (let i = 0; i < this.users.length; i++) {
+                    let row = this.users[i];
+
+                    if (row.fullName === this.selectedUser) {
+                        this.users.splice(i, 1);
+                        this.selectedUser = null;
+                        break;
+                    }
+                }
+
+                this.setCookie('users', JSON.stringify(this.users), 1000);
+            },
+            getCookie: function (cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+
+                    while (c.charAt(0) === ' ') {
+                        c = c.substring(1);
+                    }
+
+                    if (c.indexOf(name) === 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+
+                return '';
+            },
+
+            setCookie: function (cname, cvalue, exdays) {
+                let d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
             },
 
             // Scroll handler
@@ -712,7 +856,7 @@
 
             // Resize handler
             resizeHandler: function () {
-                let ratio =  Math.max(window.devicePixelRatio || 1, 1);
+                let ratio = Math.max(window.devicePixelRatio || 1, 1);
 
                 this.canvas.width = canvas.offsetWidth * ratio;
                 this.canvas.height = canvas.offsetHeight * ratio;
@@ -722,6 +866,19 @@
         mounted() {
             this.canvas = this.$refs.signature;
             this.signaturePad = new SignaturePad(this.canvas);
+            let users = this.getCookie('users');
+            if (users) {
+                users = JSON.parse(users);
+                let data = [];
+
+                for (let i = 0; i < users.length; i++) {
+                    if (typeof users[i][0] !== "undefined") {
+                        data.push(users[i][0]);
+                    }
+                }
+
+                this.users = data;
+            }
 
             window.addEventListener('scroll', this.scrollHandler);
             window.addEventListener('resize', this.resizeHandler);

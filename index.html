@@ -668,6 +668,7 @@
             getPreparedTemplateString: function () {
                 let regExStr = '{{' + this.templateVariables.join('}}|{{') + '}}';
                 const regExpPattern = new RegExp(regExStr, 'gi');
+                const checkIcon = '<span style="color: red;">&#9679;</span>';
 
                 let mapObj = {
                     fullName: this.fullName,
@@ -677,29 +678,29 @@
                     city: this.city,
                     startingHour: this.startingHour,
                     endingHour: this.endingHour,
-                    reason_1: this.reasons.includes('varianta_1') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_2: this.reasons.includes('varianta_2') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_3: this.reasons.includes('varianta_3') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_4: this.reasons.includes('varianta_4') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_5: this.reasons.includes('varianta_5') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_6: this.reasons.includes('varianta_6') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_7: this.reasons.includes('varianta_7') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_8: this.reasons.includes('varianta_8') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_9: this.reasons.includes('varianta_9') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_10: this.reasons.includes('varianta_10') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_11: this.reasons.includes('varianta_11') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_12: this.reasons.includes('varianta_12') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_13: this.reasons.includes('varianta_13') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_14: this.reasons.includes('varianta_14') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_15: this.reasons.includes('varianta_15') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    reason_16: this.reasons.includes('varianta_16') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    extra_reason_1: this.extraReasons.includes('varianta_1') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    extra_reason_2: this.extraReasons.includes('varianta_2') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    extra_reason_3: this.extraReasons.includes('varianta_3') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    extra_reason_4: this.extraReasons.includes('varianta_4') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    extra_reason_5: this.extraReasons.includes('varianta_5') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    extra_reason_6: this.extraReasons.includes('varianta_6') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
-                    extra_reason_7: this.extraReasons.includes('varianta_7') ? '&#9679;' : '&nbsp;&nbsp;&nbsp;',
+                    reason_1: this.reasons.includes('varianta_1') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_2: this.reasons.includes('varianta_2') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_3: this.reasons.includes('varianta_3') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_4: this.reasons.includes('varianta_4') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_5: this.reasons.includes('varianta_5') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_6: this.reasons.includes('varianta_6') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_7: this.reasons.includes('varianta_7') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_8: this.reasons.includes('varianta_8') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_9: this.reasons.includes('varianta_9') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_10: this.reasons.includes('varianta_10') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_11: this.reasons.includes('varianta_11') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_12: this.reasons.includes('varianta_12') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_13: this.reasons.includes('varianta_13') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_14: this.reasons.includes('varianta_14') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_15: this.reasons.includes('varianta_15') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    reason_16: this.reasons.includes('varianta_16') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    extra_reason_1: this.extraReasons.includes('varianta_1') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    extra_reason_2: this.extraReasons.includes('varianta_2') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    extra_reason_3: this.extraReasons.includes('varianta_3') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    extra_reason_4: this.extraReasons.includes('varianta_4') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    extra_reason_5: this.extraReasons.includes('varianta_5') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    extra_reason_6: this.extraReasons.includes('varianta_6') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
+                    extra_reason_7: this.extraReasons.includes('varianta_7') ? checkIcon : '&nbsp;&nbsp;&nbsp;',
                     date: this.date.split('-').reverse().join('-'),
                     signature: this.signaturePad.toDataURL()
                 };
@@ -765,7 +766,7 @@
                 this.residence = userData.residence;
                 this.birthDate = userData.birthDate;
                 this.city = userData.city;
-                this.signaturePad.fromDataURL('data:image/png;base64,' + userData.canvas);
+                // this.signaturePad.fromDataURL('data:image/png;base64,' + userData.canvas);
             },
             download: function () {
                 this.generate(this.getPreparedTemplateString());
@@ -784,8 +785,8 @@
                 this.signaturePad.clear();
             },
             save: function () {
-                let canvasBase64 = this.canvas.toDataURL();
-                canvasBase64 = canvasBase64.replace('data:image/png;base64,', '');
+                // let canvasBase64 = this.canvas.toDataURL();
+                // canvasBase64 = canvasBase64.replace('data:image/png;base64,', '');
 
                 let user = [
                     {
@@ -794,7 +795,7 @@
                         'residence': this.residence,
                         'birthDate': this.birthDate,
                         'city': this.city,
-                        'canvas': canvasBase64
+                        // 'canvas': canvasBase64
                     }
                 ];
 

@@ -456,14 +456,19 @@
                                 <tbody>
                                 <tr>
                                     <td class="align-middle w-50 text-center font-weight-bold">Data:</td>
-                                    <td class="align-middle w-50 text-center font-weight-bold">Semnătura:</td>
                                 </tr>
                                 <tr>
                                     <td class="w-50"><input type="date" class="form-control" v-model="date" required/>
-                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle w-50 text-center font-weight-bold">Semnătura:</td>
+                                </tr>
+                                <tr>
                                     <td class="text-center">
                                         <canvas width="350" height="200" ref="signature"
                                                 style="border: 1px solid #e5e5e5"></canvas>
+                                        <br />
+                                        <a href="javascript:void(0);" class="small" v-on:click="resetSignature">Reseteaza semnătura</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -775,6 +780,9 @@
                 this.save();
                 this.download();
             },
+            resetSignature: function() {
+                this.signaturePad.clear();
+            },
             save: function () {
                 let canvasBase64 = this.canvas.toDataURL();
                 canvasBase64 = canvasBase64.replace('data:image/png;base64,', '');
@@ -858,8 +866,8 @@
             resizeHandler: function () {
                 let ratio = Math.max(window.devicePixelRatio || 1, 1);
 
-                this.canvas.width = canvas.offsetWidth * ratio;
-                this.canvas.height = canvas.offsetHeight * ratio;
+                this.canvas.width = this.canvas.offsetWidth * ratio;
+                this.canvas.height = this.canvas.offsetHeight * ratio;
                 this.canvas.getContext("2d").scale(ratio, ratio);
             }
         },

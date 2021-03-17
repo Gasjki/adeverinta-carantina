@@ -59,7 +59,8 @@ let templateString = `
                 <span style="padding: 3px 0; display: block">{{reason_12}} l) eliberarea de documente necesare pentru obținerea unor drepturi prevăzute de lege;</span>
                 <span style="padding: 3px 0; display: block">{{reason_13}} m) alte motive justificative precum: îngrijirea / însoțirea copiilor / membrilor de familie, îngrijirea unei rude / afin sau persoană aflată în întreținere, asistență persoanelor vârstnice, bolnave sau cu dizabilități ori deces al unui membru de familie;</span>
                 <span style="padding: 3px 0; display: block">{{reason_14}} n) participarea la activități religioase.</span>
-                <span style="padding: 3px 0; display: block">{{reason_15}} o) deplasări ale persoanelor care sunt în tranzit sau efectuează călătorii al căror interval orar se suprapune cu perioada interdicției, cum ar fi cele efectuate cu avionul, trenul, autocare sau alte mijloace de transport de persoane și care poate fi dovedit prin bilet sau orice altă modalitate de achitare a călătoriei.</span>
+                <span style="padding: 3px 0; display: block">{{reason_15}} o) deplasări ale persoanelor care sunt în tranzit sau efectuează călătorii al căror interval orar se suprapune cu perioada interdicției, cum ar fi cele efectuate cu avionul, trenul, autocare sau alte mijloace de transport de persoane și care poate fi dovedit prin bilet sau orice altă modalitate de achitare a călătoriei;</span>
+                <span style="padding: 3px 0; display: block">{{reason_16}} p) deplasări ale persoanelor pentru administrare de vaccin împotriva SARS-CoV-2.</span>
             </p>
             <p style="font-size: 12px;text-align: justify">În intervalul orar 22.00-06.00, circulația persoanelor în afara locuinței/gospodăriei este permisă numai pentru motivele prevăzute la pct.1, lit.a), c), m) și o). </p>
             <h3><b>2. Intrarea/ieșire în/din localitatea carantinată</b></h3>
@@ -76,7 +77,7 @@ let templateString = `
                 <tbody>
                     <tr>
                         <td style="width: 10%; vertical-align: middle"></td>
-                        <td style="width: 15%;text-align: center; vertical-align: middle"><b>Data:</b></td>
+                        <td style="width: 15%;text-align: center; vertical-align: middle"><b>Dată:</b></td>
                         <td style="width: 15%; vertical-align: middle">{{date}}</td>
                         <td style="width: 10%; vertical-align: middle"></td>
                         <td style="width: 15%;text-align: center; vertical-align: middle"><b>Semnătura:</b></td>

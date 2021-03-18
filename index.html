@@ -471,11 +471,9 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">
-                                        <canvas width="350" height="200" ref="signature"
-                                                style="border: 1px solid #e5e5e5"></canvas>
+                                        <canvas width="300" height="200" ref="signature" style="border: 1px solid #e5e5e5"></canvas>
                                         <br/>
-                                        <a href="javascript:void(0);" class="small" v-on:click="resetSignature">Reseteaza
-                                            semnătura</a>
+                                        <a href="javascript:void(0);" class="small" v-on:click="resetSignature">Reseteaza semnătura</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -491,10 +489,6 @@
                     </div>
                 </form>
             </div>
-            <button type="submit" class="btn btn-sm btn-success scroll-to-top" :class="{ 'd-none': isButtonFloating }"
-                    @click="onClick">
-                Descarca document
-            </button>
         </div>
     </div>
 </div>

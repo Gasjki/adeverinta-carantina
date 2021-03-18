@@ -73,7 +73,7 @@ let templateString = `
                 <span style="padding: 3px 0; display: block">{{extra_reason_6}} f) deplasarea pentru asistență medicală care nu poate fi amânată și nici realizată de la distanță;</span>
                 <span style="padding: 3px 0; display: block">{{extra_reason_7}} g) urgențe medicale.</span>
             </p>
-            <table style="padding: 10px 35px 15px; font-size: 15px">
+            <table style="padding: 3px 35px; margin-top: -15px; font-size: 15px">
                 <tbody>
                     <tr>
                         <td style="width: 10%; vertical-align: middle"></td>

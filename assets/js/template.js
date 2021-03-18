@@ -73,7 +73,7 @@ let templateString = `
                 <span style="padding: 3px 0; display: block">{{extra_reason_6}} f) deplasarea pentru asistență medicală care nu poate fi amânată și nici realizată de la distanță;</span>
                 <span style="padding: 3px 0; display: block">{{extra_reason_7}} g) urgențe medicale.</span>
             </p>
-            <table style="padding: 10px 35px; font-size: 15px">
+            <table style="padding: 10px 35px 15px; font-size: 15px">
                 <tbody>
                     <tr>
                         <td style="width: 10%; vertical-align: middle"></td>
@@ -81,7 +81,7 @@ let templateString = `
                         <td style="width: 15%; vertical-align: middle">{{date}}</td>
                         <td style="width: 10%; vertical-align: middle"></td>
                         <td style="width: 15%;text-align: center; vertical-align: middle"><b>Semnătura:</b></td>
-                        <td style="width: 25%; vertical-align: middle"><img src="{{signature}}" style="width: 100%;/></td>
+                        <td style="width: 25%; vertical-align: middle"><img src="{{signature}}" style="width: 100%;"/></td>
                         <td style="width: 10%; vertical-align: middle"></td>
                     </tr>     
                 </tbody>

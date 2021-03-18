@@ -63,6 +63,19 @@
                             </table>
                             <table class="table table-sm d-block d-md-none">
                                 <tbody>
+                                <tr v-if="users.length">
+                                    <td class="align-middle w-25">Datele tale</td>
+                                    <td colspan="3" class="align-middle w-75">
+                                        <select class="form-control" v-model="selectedUser" v-on:change="loadUser">
+                                            <option value="" selected disabled>Alege utilizator</option>
+                                            <option v-for="user in users" :value="user.fullName"
+                                                    v-text="user.fullName"/>
+                                        </select>
+                                        <a href="javascript:void(0);" class="small" v-on:click="deleteUser"
+                                           v-show="this.selectedUser !== ''">(Sterge
+                                            datele pentru utilizatorul curent)</a>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="align-middle w-25">Subsemnatul</td>
                                     <td class="align-middle w-75"><input type="text" class="form-control"
@@ -75,8 +88,11 @@
                                 </tr>
                                 <tr>
                                     <td class="align-middle w-25">Cu reședința în</td>
-                                    <td class="align-middle"><input type="text" class="form-control" v-model="residence"
-                                                                    required/></td>
+                                    <td class="align-middle">
+                                        <input type="text" class="form-control" v-model="residence" required/>
+                                        <a href="javascript:void(0);" v-on:click="copyInfoFromResidence" class="small">Copiaza
+                                            datele de la domiciliu</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle w-25">Născut/născută în data de</td>

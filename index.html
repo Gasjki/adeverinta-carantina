@@ -487,9 +487,11 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">
-                                        <canvas width="300" height="200" ref="signature" style="border: 1px solid #e5e5e5"></canvas>
+                                        <canvas width="300" height="200" ref="signature"
+                                                style="border: 1px solid #e5e5e5"></canvas>
                                         <br/>
-                                        <a href="javascript:void(0);" class="small" v-on:click="resetSignature">Reseteaza semnătura</a>
+                                        <a href="javascript:void(0);" class="small" v-on:click="resetSignature">Reseteaza
+                                            semnătura</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -752,7 +754,8 @@
                         let doc = new jsPDF('p', 'mm', [297, 210]);
 
                         doc.addImage(templateImage[0], 'PNG', 15, 15);
-                        const currentDayMonth = (new Date()).toLocaleDateString('ro').replace(/\./g, '_');
+                        const date = new Date();
+                        let currentDayMonth = date.getFullYear() + '' + (date.getMonth() + 1) + '' + date.getDay() + '' + date.getHours() + '' + date.getMinutes() + '' + date.getSeconds();
 
                         const fileName = 'declaratie_carantina_' + currentDayMonth + '.pdf';
                         doc.save(fileName);
